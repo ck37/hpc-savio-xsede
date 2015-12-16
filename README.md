@@ -3,7 +3,9 @@ Multicore and multi-node parallel R computation via SLURM on the Savio cluster a
 
 
 ## Check job status
+```bash
 squeue | grep $USER
+```
 
 ## How to compile R on Savio
 
