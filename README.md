@@ -16,3 +16,5 @@ cd R-3.2.3
 make
 make install
 ```
+
+You may then want to modify ~/.bash_profile and add ~/lib/bin to your path.
