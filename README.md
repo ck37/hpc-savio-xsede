@@ -1,6 +1,5 @@
-# savio-r
-Multicore and multi-node parallel R computation via SLURM on the Savio cluster at UC Berkeley
-
+# savio-notes
+Notes on using UC Berkeley's Savio cluster for multicore and multi-node parallel R computation via SLURM.
 
 ## Check job status
 ```bash
