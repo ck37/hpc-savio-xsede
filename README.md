@@ -8,6 +8,7 @@ squeue | grep $USER
 
 ## How to compile R on Savio
 
+With thanks to Chris Paciorek for help on this.
 ```bash
 module load gcc java
 module unload intel/2013_sp1.4.211
