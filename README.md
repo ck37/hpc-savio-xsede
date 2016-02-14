@@ -26,13 +26,17 @@ You may then want to modify ~/.bash_profile and add ~/lib/bin to your path.
 
 ## Remote mount Savio via SSH
 
-* Install osxfuse
-* Install sshfs
-* Install Macfusion
+* Install osxfuse, sshfs, and Macfusion
 
-This can be done easily with Homebrew:
+This can be done easily with [Homebrew](http://brew.sh/):
 ```bash
 brew cask install osxfuse sshfs macfusion
+```
+
+Modify macfusion to use the new ssh ([directions from here](https://github.com/osxfuse/osxfuse/wiki/SSHFS#macfusion)):
+```bash
+cd /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources
+mv -f sshfs-static.orig sshfs-static
 ```
 
 You can then use MacFusion to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer.
