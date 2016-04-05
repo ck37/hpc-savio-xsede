@@ -8,15 +8,19 @@ squeue | grep $USER
 
 ## How to compile R on Savio
 
-With thanks to Chris Paciorek for help on this.
+Savio currently only has R 3.1, so we need to compile a new version to get R 3.2. Thanks to Chris Paciorek for help on this.
 ```bash
 module load gcc java
+# Intel compiler messes up gcc, so we need to unload it.
 module unload intel/2013_sp1.4.211
+# Make a source folder for storing packages to compile.
 mkdir -p ~/lib/src
 cd ~/lib/src
+# Get the latest version of R, currently 3.2.3
 wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.2.3.tar.gz
 tar zxvf R-3.2.3.tar.gz
 cd R-3.2.3
+# Install the built package into our lib directory, in the bin subdirectory.
 ./configure --prefix=$HOME/lib
 make
 make install
@@ -39,4 +43,4 @@ cd /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resource
 mv -f sshfs-static.orig sshfs-static
 ```
 
-You can then use MacFusion to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer.
+You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer.
