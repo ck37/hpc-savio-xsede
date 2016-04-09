@@ -73,4 +73,4 @@ cd /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resource
 mv -f sshfs-static.orig sshfs-static
 ```
 
-You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer.
+You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
