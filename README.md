@@ -6,6 +6,16 @@ Notes on using UC Berkeley's Savio cluster for multicore and multi-node parallel
 squeue | grep $USER
 ```
 
+## Set R mirror
+Create ~/.Rprofile set file and put this in the first line:
+```bash
+options(repos=structure(c(CRAN="http://cran.cnr.berkeley.edu/")))
+```
+Then when you install packages you won't have to select a mirror every time.
+
+## Setup SSH keys for github
+I have not been able to get this to work yet.
+
 ## How to compile R on Savio
 
 Savio currently only has R 3.1, so we need to compile a new version to get R 3.2. Thanks to Chris Paciorek for help on this.
