@@ -7,7 +7,7 @@ squeue | grep $USER
 ```
 
 ## Set R mirror
-Create ~/.Rprofile set file and put this in the first line:
+Create ~/.Rprofile and put this in the first line:
 ```bash
 options(repos=structure(c(CRAN="http://cran.cnr.berkeley.edu/")))
 ```
