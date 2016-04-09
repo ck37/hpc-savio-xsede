@@ -1,6 +1,11 @@
 # savio-notes
 Notes on using UC Berkeley's Savio cluster for multicore and multi-node parallel R computation via SLURM.
 
+## Key resources
+
+* Chris Paciorek's [Savio 2016 Biostats repository](https://github.com/berkeley-scf/savio-biostat-2016)
+* Chris Paciorek's [parallel distributed repository](https://github.com/berkeley-scf/tutorial-parallel-distributed)
+
 ## Check job status
 ```bash
 squeue | grep $USER
