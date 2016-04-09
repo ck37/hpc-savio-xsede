@@ -6,6 +6,21 @@ Notes on using UC Berkeley's Savio cluster for multicore and multi-node parallel
 * Chris Paciorek's [Savio 2016 Biostats repository](https://github.com/berkeley-scf/savio-biostat-2016)
 * Chris Paciorek's [parallel distributed repository](https://github.com/berkeley-scf/tutorial-parallel-distributed)
 
+## Run an interactive job
+
+Opens a bash shell with access to 1 node for 30 minutes, via the D-Lab condo:
+```bash
+srun -A co_dlab -p savio  -N 1 -t 30:0 --pty bash
+```
+After 30 minutes have elapsed the system will terminate the bash shell and send you back to the login node.
+
+## Run a batch job
+
+Run myjob.sh, which defines the parameters of the SLURM job (see Chris P's biostats repo above).
+```bash
+sbatch myjob.sh
+```
+
 ## Check job status
 ```bash
 squeue | grep $USER
@@ -21,7 +36,7 @@ Then when you install packages you won't have to select a mirror every time.
 ## Setup SSH keys for github
 I have not been able to get this to work yet.
 
-## How to compile R on Savio
+## Compile R on Savio
 
 Savio currently only has R 3.1, so we need to compile a new version to get R 3.2. Thanks to Chris Paciorek for help on this.
 ```bash
