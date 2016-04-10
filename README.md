@@ -12,7 +12,13 @@ Opens a bash shell with access to 1 node for 30 minutes, via the D-Lab condo:
 ```bash
 srun -A co_dlab -p savio  -N 1 -t 30:0 --pty bash
 ```
-After 30 minutes have elapsed the system will terminate the bash shell and send you back to the login node.
+After 30 minutes have elapsed the system will terminate the bash shell and send you back to the login node. Or run the "exit" command to stop early, per usual.
+
+Do the same thing, but with 2 nodes and for 5 hours, then check that it works:
+```bash
+srun -A co_dlab -p savio  -N 2 -t 300:0 --pty bash
+echo $SLURM_NODELIST    # Should list two computer hostnames
+```
 
 ## Run a batch job
 
@@ -73,4 +79,4 @@ cd /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resource
 mv -f sshfs-static.orig sshfs-static
 ```
 
-You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
+You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer, e.g. opening R scripts in RStudio to edit. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
