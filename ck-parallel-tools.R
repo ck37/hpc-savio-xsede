@@ -7,7 +7,7 @@ setup_parallelism = function(conf = NULL, type="either", allow_multinode = T,
                              outfile = "") {
   # Indicator for multi-node parallelism.
   multinode = F
-
+  
   # Check if we have multiple machine access.
   if (allow_multinode) {
     machines = strsplit(machine_list, ",")[[1]]
@@ -19,18 +19,18 @@ setup_parallelism = function(conf = NULL, type="either", allow_multinode = T,
       multinode = T
     }
   }
-
-  if (!multinode) {
+  
+  if (!multinode) { 
     # Count of physical cores, unlike parallel:detectCores() which is logical cores (threads).
     cores = RhpcBLASctl::get_num_cores()
     cat("Local physical cores detected:", cores, "\n")
-
+    
     if (exists("conf") && !is.null(conf) && "num_cores" %in% names(conf)) {
       cores = conf$num_cores
       cat("Using", cores, " local cores due to conf settings.\n")
     }
   }
-
+  
   if (multinode || type %in% c("cluster", "doParallel")) {
     # Outfile = "" allows output from within foreach to be displayed while in RStudio.
     # TODO: figure out how to suppress the output from makeCluster()
@@ -46,6 +46,21 @@ setup_parallelism = function(conf = NULL, type="either", allow_multinode = T,
     registerDoMC(cores)
     cl = NA
   }
+  
+  # Make sure the BLAS is not competing with the SL parallelism.
+  omp_threads = omp_get_max_threads()
+  if (!is.null(omp_threads) && omp_threads > 1) {
+    omp_set_num_threads(1)
+  }
+  
+  # TODO: need to figure out difference between get_max_threads and get_num_procs.
+  # They are not always both consistently set to 1 (i.e. on Benten).
+  omp_threads = omp_get_num_procs()
+  # If omp_get_num_procs() returns NULL we can safely plan on using 1 thread.
+  omp_threads = ifelse(is.null(omp_threads), 1, omp_threads)
+  cat("Our BLAS is setup for", blas_get_num_procs(), "threads and OMP is", omp_threads, "threads.\n")
+  #cat("Multicore parallel is setup to use", getOption("mc.cores"), "cores.\n")
+  
   cat("doPar backend registered:", getDoParName(), "\n")
   cat("Workers enabled:", getDoParWorkers(), "\n")
   # Return invisibily so that NA is not printed.
