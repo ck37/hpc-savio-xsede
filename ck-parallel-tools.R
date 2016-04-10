@@ -45,6 +45,8 @@ setup_parallelism = function(conf = NULL, type="either", allow_multinode = T,
     # doMC only supports multicore parallelism, not multi-node.
     registerDoMC(cores)
     cl = NA
+    # TODO: is this needed since we've already done registerDoMC()?
+    options(mc.cores = cores)
   }
   
   # Make sure the BLAS is not competing with the SL parallelism.
