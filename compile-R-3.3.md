@@ -93,4 +93,7 @@ which R
 # Also load R to confirm that it works.
 R
 # If this doesn't find the new R then something is wrong.
+
+# Setup R for java usage.
+R CMD javareconf
 ```
