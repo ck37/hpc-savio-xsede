@@ -1,6 +1,6 @@
 # Compile R 3.3
 
-Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them a tad.
+Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general.
 
 I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know.
 
