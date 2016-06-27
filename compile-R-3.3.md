@@ -84,7 +84,7 @@ cd R-3.3.1
 make && make install
 
 # Add $TARGET_DIR/bin to your path if you haven't already.
-echo "export PATH=\$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
+echo "export PATH=$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
 
 # Reload your .bash_profile with the revised path
 source ~/.bash_profile
