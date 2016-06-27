@@ -1,6 +1,6 @@
 # Compile R 3.3
 
-Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general.
+Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems.
 
 I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know.
 
