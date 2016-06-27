@@ -45,25 +45,9 @@ I have not been able to get this to work yet.
 
 ## Compile R on Savio
 
-Savio currently only has R 3.1, so we need to compile a new version to get R 3.2. Thanks to Chris Paciorek for help on this.
-```bash
-module load gcc java
-# Intel compiler messes up gcc, so we need to unload it.
-module unload intel/2013_sp1.4.211
-# Make a source folder for storing packages to compile.
-mkdir -p ~/lib/src
-cd ~/lib/src
-# Get the latest version of R, currently 3.2.3
-wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.2.3.tar.gz
-tar zxvf R-3.2.3.tar.gz
-cd R-3.2.3
-# Install the built package into our lib directory, in the bin subdirectory.
-./configure --prefix=$HOME/lib
-make
-make install
-```
+Savio currently only has R 3.2.5, so we need to compile a new version to get R 3.3. Thanks to Chris Paciorek for help on this.
 
-You may then want to modify ~/.bash_profile and add ~/lib/bin to your path.
+[Instructions are in this separate Markdown file](compile-R-3.3.md)
 
 ## Remote mount Savio via SSH
 
