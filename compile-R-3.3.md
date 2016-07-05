@@ -1,4 +1,4 @@
-# Compile R 3.3
+# Compile R 3.3 on Savio
 
 Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems.
 
@@ -8,7 +8,7 @@ I am compiling these steps after the fact so if I made any mistakes in the trans
 
 ```bash
 # Setup modules that we need.
-module load gcc java lapack 
+module load gcc java lapack texlive texinfo
 # Intel compiler messes up gcc, so we need to unload it.
 module unload intel
 
