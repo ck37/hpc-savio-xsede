@@ -8,9 +8,7 @@ I am compiling these steps after the fact so if I made any mistakes in the trans
 
 ```bash
 # Setup modules that we need.
-module load gcc java lapack texlive texinfo
-# Intel compiler messes up gcc, so we need to unload it.
-module unload intel
+module load gcc/4.8.5 java lapack texlive texinfo
 
 # Make a source folder for storing packages to compile.
 mkdir -p ~/lib/src
