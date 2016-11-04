@@ -4,8 +4,8 @@ Notes on using UC Berkeley's Savio cluster for multicore and multinode parallel 
 ## Files in this repository
 
 * [h2o-slurm-multinode.Rmd](h2o-slurm-multinode.Rmd) - example of how to start a multinode h2o cluster using R
-* [sbatch-rmd.sh](sbatch-rmd.sh) - generalized slurm job script that runs an Rmd and converts to html
-* [sbatch-r.sh](sbatch-r.sh) - generalized slurm job script that run an R file
+* [sbatch-rmd.sh](sbatch-rmd.sh) - generalized slurm job script that runs any Rmd file and generates html
+* [sbatch-r.sh](sbatch-r.sh) - generalized slurm job script that runs any R file
 * [Makefile](Makefile) - generalized Makefile to customize slurm parameters and submit jobs
 * [compile-R-3.3.md](compile-R-3.3.md) - compiling R on Savio
 
