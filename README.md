@@ -1,5 +1,14 @@
 # savio-notes
-Notes on using UC Berkeley's Savio cluster for multicore and multi-node parallel R computation via SLURM.
+Notes on using UC Berkeley's Savio cluster for multicore and multinode parallel R computation via SLURM.
+
+## Files in this repository
+
+* [h2o-slurm-multinode.Rmd]() - example of how to start a multinode h2o cluster using R
+* [sbatch-rmd.sh]() - generalized slurm job script that runs an Rmd and converts to html
+* [sbatch-r.sh]() - generalized slurm job script that run an R file
+* [Makefile]() - generalized Makefile to customize slurm parameters and submit jobs
+* [compile-R-3.3.md]() - compiling R on Savio
+
 
 ## Key resources
 
@@ -40,15 +49,6 @@ options(repos=structure(c(CRAN="http://cran.cnr.berkeley.edu/")))
 ```
 Then when you install packages you won't have to select a mirror every time.
 
-## Setup SSH keys for github
-I have not been able to get this to work yet.
-
-## Compile R on Savio
-
-Savio currently only has R 3.2.5, so we need to compile a new version to get R 3.3. Thanks to Chris Paciorek for help on this.
-
-[Instructions are in this separate Markdown file](compile-R-3.3.md)
-
 ## Remote mount Savio via SSH
 
 * Install osxfuse, sshfs, and Macfusion
@@ -65,3 +65,6 @@ mv -f sshfs-static.orig sshfs-static
 ```
 
 You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer, e.g. opening R scripts in RStudio to edit. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
+
+## Setup SSH keys for github
+(To be added)
