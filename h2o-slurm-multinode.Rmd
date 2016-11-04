@@ -23,9 +23,7 @@ if (node_list != "") {
 # Specify how many nodes we want h2o to use.
 h2o_num_nodes = length(ips)
 
-# Launch h2o via a system call.
-#
-# Options:
+# Options to pass to java call:
 args = c(
   # -Xmx30g allocate 30GB of RAM per node. Needs to come before "-jar"
   "-Xmx30g",
@@ -42,8 +40,8 @@ cat(paste0("Args:\n", paste(args, collapse="\n"), "\n"))
 for (node_i in 1:h2o_num_nodes) {
   cat("\nLaunching h2o worker on", ips[node_i], "\n")
   new_args = c(ips[node_i], "java", args)
-  # Launch a worker on this IP, creating a separate output and error
-  # file for each one. These could go in a subdirectory.
+  # Ssh into the target IP and launch an h2o worker with its own
+  # output and error files. These could go in a subdirectory.
   cmd_result = system2("ssh", args = new_args,
                        stdout = paste0("h2o_out_", node_i, ".txt"),
                        stderr = paste0("h2o_err_", node_i, ".txt"),
