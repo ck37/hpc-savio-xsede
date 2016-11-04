@@ -27,7 +27,7 @@ SBATCH=sbatch -A ${ACCOUNT} -p ${PARTITION} --qos ${QOS}
 ######
 # Makefile configuration.
 
-# These can be subdirectories if desired, e.g. scripts/ and output/
+# These can be subdirectories if desired, e.g. ./scripts and ./output
 SCRIPT_DIR=.
 OUTPUT_DIR=.
 
