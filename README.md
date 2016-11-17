@@ -55,14 +55,10 @@ Then when you install packages you won't have to select a mirror every time.
 
 This can be done easily with [Homebrew](http://brew.sh/):
 ```bash
-brew cask install osxfuse sshfs macfusion
+brew cask install osxfuse sshfs
 ```
 
-Modify macfusion to use the new ssh ([directions from here](https://github.com/osxfuse/osxfuse/wiki/SSHFS#macfusion)):
-```bash
-cd /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources
-mv -f sshfs-static.orig sshfs-static
-```
+Currently (Nov. 16) Homebrew does not have the latest version of Macfusion, so that needs to be installed from https://github.com/ElDeveloper/macfusion2.
 
 You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer, e.g. opening R scripts in RStudio to edit. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
 
