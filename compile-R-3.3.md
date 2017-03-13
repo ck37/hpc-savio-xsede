@@ -79,7 +79,7 @@ cd R-3.3.1
 
 # Install the built package into our lib directory, in the bin subdirectory.
 ./configure --prefix=$TARGET_DIR --with-blas --with-lapack
-make && make install
+make -j4 && make install
 
 # Add $TARGET_DIR/bin to your path if you haven't already.
 echo "export PATH=$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
