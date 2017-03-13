@@ -44,9 +44,9 @@ make install PREFIX=$TARGET_DIR && cd ..
 
 ## Install xz
 ```bash
-wget http://tukaani.org/xz/xz-5.2.2.tar.gz
+wget http://tukaani.org/xz/xz-5.2.3.tar.gz
 tar zxvf xz*.tar.gz
-cd xz-5.2.2
+cd xz-5.2.3
 ./configure --prefix=$TARGET_DIR
 make && make install && cd ..
 ```
