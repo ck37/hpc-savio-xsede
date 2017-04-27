@@ -61,9 +61,9 @@ make -j3 && make install && cd ..
 
 ## Install libcurl
 ```bash
-wget https://curl.haxx.se/download/curl-7.53.1.zip
+wget https://curl.haxx.se/download/curl-7.54.0.zip
 unzip curl*.zip
-cd curl-7.53.1
+cd curl-7.54.0
 ./configure --prefix=$TARGET_DIR
 make -j3 && make install && cd ..
 ```
