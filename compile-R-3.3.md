@@ -2,7 +2,7 @@
 
 Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems. Thank you to Chris Paciorek for help with this.
 
-I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know. 
+I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know.
 
 ## Basic setup
 
@@ -18,9 +18,9 @@ export TARGET_DIR=$HOME/lib
 
 # Setup compilation directories
 export PATH=$TARGET_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$TARGET_DIR/lib:$LD_LIBRARY_PATH 
-export CFLAGS="-I$TARGET_DIR/include" 
-export LDFLAGS="-L$TARGET_DIR/lib" 
+export LD_LIBRARY_PATH=$TARGET_DIR/lib:$LD_LIBRARY_PATH
+export CFLAGS="-I$TARGET_DIR/include"
+export LDFLAGS="-L$TARGET_DIR/lib"
 ```
 
 ## Install zlib
@@ -37,7 +37,6 @@ make && make install && cd ..
 wget http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
 tar zxvf bzip2*.gz
 cd bzip2-1.0.6
-./configure --prefix=$TARGET_DIR
 make -f Makefile-libbz2_so && make clean && make
 make install PREFIX=$TARGET_DIR && cd ..
 ```
