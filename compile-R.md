@@ -71,10 +71,10 @@ make -j3 && make install && cd ..
 ## Finally, we download and install R
 
 ```bash
-# Get the latest version of R, currently 3.3.1
-wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.3.1.tar.gz
-tar zxvf R-3.3.1.tar.gz
-cd R-3.3.1
+# Get the latest version of R, currently 3.4.0
+wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.4.0.tar.gz
+tar zxvf R-3.4.0.tar.gz
+cd R-3.4.0
 
 # Install the built package into our lib directory, in the bin subdirectory.
 ./configure --prefix=$TARGET_DIR --with-blas --with-lapack
