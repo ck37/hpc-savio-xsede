@@ -25,9 +25,9 @@ export LDFLAGS="-L$TARGET_DIR/lib"
 
 ## Install zlib
 ```bash
-wget http://zlib.net/zlib128.zip
+wget http://zlib.net/zlib1211.zip
 unzip zlib*.zip
-cd zlib-1.2.8
+cd zlib-1.2.11
 ./configure --prefix=$TARGET_DIR
 make && make install && cd ..
 ```
