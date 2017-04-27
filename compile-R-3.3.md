@@ -52,9 +52,9 @@ make && make install && cd ..
 
 ## Install pcre
 ```bash
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.zip
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.zip
 unzip pcre*.zip
-cd pcre-8.39
+cd pcre-8.40
 ./configure --enable-utf8 --prefix=$TARGET_DIR
 make -j3 && make install && cd ..
 ```
