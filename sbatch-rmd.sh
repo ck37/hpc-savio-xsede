@@ -46,9 +46,19 @@ module load java
 # Load a better linear algebra system.
 module load lapack
 
+# GPU computation modules. CUDA is 7.5, cudnn is 4.0.
+module load cuda cudnn
+
 # knitr does not support subdirectories - need to use cd.
 cd $dir_output
+
 # This assumes we are in a subdirectory; remove "../" if not.
 Rscript -e "knitr::knit('../$file.Rmd', '$file.md')" 2>&1
-# Convert markdown to html once the Rmd file is complete.
-Rscript -e "markdown::markdownToHTML('$file.md', '$file.html')"
+
+# Check if the markdown file was generated.
+if [ -f "$file.md" ]; then
+  # Convert markdown to html
+  Rscript -e "markdown::markdownToHTML('$file.md', '$file.html')"
+else
+  echo "Error: Markdown file $file.md does not exist. Can't create html file."
+fi
