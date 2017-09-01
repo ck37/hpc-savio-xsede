@@ -1,8 +1,8 @@
-# Compile R 3.3 on Savio
+# Compile R on Savio
 
-Compiling R 3.3 from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems. Thank you to Chris Paciorek for help with this.
+Compiling R from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems. Thank you to Chris Paciorek for help with this.
 
-I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know. 
+I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know.
 
 ## Basic setup
 
@@ -18,16 +18,16 @@ export TARGET_DIR=$HOME/lib
 
 # Setup compilation directories
 export PATH=$TARGET_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$TARGET_DIR/lib:$LD_LIBRARY_PATH 
-export CFLAGS="-I$TARGET_DIR/include" 
-export LDFLAGS="-L$TARGET_DIR/lib" 
+export LD_LIBRARY_PATH=$TARGET_DIR/lib:$LD_LIBRARY_PATH
+export CFLAGS="-I$TARGET_DIR/include"
+export LDFLAGS="-L$TARGET_DIR/lib"
 ```
 
 ## Install zlib
 ```bash
-wget http://zlib.net/zlib128.zip
+wget http://zlib.net/zlib1211.zip
 unzip zlib*.zip
-cd zlib-1.2.8
+cd zlib-1.2.11
 ./configure --prefix=$TARGET_DIR
 make && make install && cd ..
 ```
@@ -37,34 +37,33 @@ make && make install && cd ..
 wget http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
 tar zxvf bzip2*.gz
 cd bzip2-1.0.6
-./configure --prefix=$TARGET_DIR
 make -f Makefile-libbz2_so && make clean && make
 make install PREFIX=$TARGET_DIR && cd ..
 ```
 
 ## Install xz
 ```bash
-wget http://tukaani.org/xz/xz-5.2.2.tar.gz
+wget http://tukaani.org/xz/xz-5.2.3.tar.gz
 tar zxvf xz*.tar.gz
-cd xz-5.2.2
+cd xz-5.2.3
 ./configure --prefix=$TARGET_DIR
 make && make install && cd ..
 ```
 
 ## Install pcre
 ```bash
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.zip
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.zip
 unzip pcre*.zip
-cd pcre-8.39
+cd pcre-8.40
 ./configure --enable-utf8 --prefix=$TARGET_DIR
 make -j3 && make install && cd ..
 ```
 
 ## Install libcurl
 ```bash
-wget https://curl.haxx.se/download/curl-7.49.1.zip
+wget https://curl.haxx.se/download/curl-7.54.0.zip
 unzip curl*.zip
-cd curl-7.49.1
+cd curl-7.54.0
 ./configure --prefix=$TARGET_DIR
 make -j3 && make install && cd ..
 ```
@@ -72,14 +71,14 @@ make -j3 && make install && cd ..
 ## Finally, we download and install R
 
 ```bash
-# Get the latest version of R, currently 3.3.1
-wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.3.1.tar.gz
-tar zxvf R-3.3.1.tar.gz
-cd R-3.3.1
+# Get the latest version of R, currently 3.4.0
+wget https://cran.cnr.berkeley.edu/src/base/R-3/R-3.4.0.tar.gz
+tar zxvf R-3.4.0.tar.gz
+cd R-3.4.0
 
 # Install the built package into our lib directory, in the bin subdirectory.
 ./configure --prefix=$TARGET_DIR --with-blas --with-lapack
-make && make install
+make -j4 && make install
 
 # Add $TARGET_DIR/bin to your path if you haven't already.
 echo "export PATH=$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
