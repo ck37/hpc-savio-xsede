@@ -35,6 +35,17 @@ done
 # module load r
 
 # Load a newer version of gcc than the default.
-module load gcc/4.8.5 java lapack
+module load gcc/4.8.5
 
-R CMD BATCH --no-save --no-restore ${file} ${dir_output}/${file}.out
+# Load Java if any R packages need RJava (bartMachine, h2o, etc.)
+module load java
+
+# Load a better linear algebra system.
+module load lapack
+
+# GPU computation modules. CUDA is 7.5, cudnn is 4.0.
+module load cuda cudnn
+
+# Add job id to output file in case multiple versions of script are running
+# simultaneously.
+R CMD BATCH --no-save --no-restore ${file} ${dir_output}/${file}-${SLURM_JOB_ID}.out
