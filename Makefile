@@ -26,29 +26,29 @@ endif
 # Savio configuration.
 
 # This allows us to use environmental variables to override this default.
-# e.g. we run in BASH: "export ACCOUNT=co_otheraccount"
-ifndef ACCOUNT
-	ACCOUNT=co_biostat
+# e.g. we run in BASH: "export SBATCH_ACCOUNT=co_otheraccount"
+ifndef SBATCH_ACCOUNT
+	SBATCH_ACCOUNT=co_biostat
 endif
 
 # This allows us to use environmental variables to override this default.
-ifndef PARTITION
-	PARTITION=savio2
+ifndef SBATCH_PARTITION
+	SBATCH_PARTITION=savio2
 endif
 
 # This allows us to override the default QOS by setting an environmental variable.
-# e.g. we run in BASH: "export QOS=biostat_normal"
-ifndef QOS
+# e.g. we run in BASH: "export SBATCH_QOS=biostat_normal"
+ifndef SBATCH_QOS
 	# Choose one QOS and comment out the other, or use environmental variables.
-	QOS=biostat_savio2_normal
-	#QOS=savio_lowprio
+	SBATCH_QOS=biostat_savio2_normal
+	#SBATCH_QOS=savio_lowprio
 endif
 
 ########################################
 # Execution engines.
 
 # Sbatch runs a SLURM job, e.g. on Savio or XSEDE.
-SBATCH=sbatch -A ${ACCOUNT} -p ${PARTITION} --qos ${QOS}
+SBATCH=sbatch -A ${SBATCH_ACCOUNT} -p ${SBATCH_PARTITION} --qos ${SBATCH_QOS}
 
 # Setup R to run commands in the background and keep running after logout.
 R=nohup nice -n 19 R CMD BATCH --no-restore --no-save
