@@ -1,10 +1,10 @@
-# savio-notes
-Notes on using UC Berkeley's Savio cluster for multicore and multinode parallel R computation via SLURM.
+# savio-xsede-notes
+Notes on using UC Berkeley's Savio cluster and XSEDE for multicore and multinode parallel R computation via SLURM.
 
 ## Files in this repository
 
 * [h2o-slurm-multinode.Rmd](h2o-slurm-multinode.Rmd) - example of how to start a multinode h2o cluster using R
-* [sbatch-r.sh](sbatch-r-rmd.sh) - generalized slurm job script that runs any R or Rmd file
+* [sbatch-r-rmd.sh](sbatch-r-rmd.sh) - generalized slurm job script that runs any R or Rmd file
 * [Makefile](Makefile) - generalized Makefile to customize slurm parameters and submit jobs
 * [compile-R.md](compile-R.md) - compiling R on Savio
 
