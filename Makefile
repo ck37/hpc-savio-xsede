@@ -1,7 +1,7 @@
 ########################################
 # General setup
 
-# Directory where sbatch-r.sh, sbatch-rmd.sh, etc. can be found.
+# Directory where sbatch-r-rmd.sh, etc. can be found.
 SCRIPT_DIR=scripts
 #SCRIPT_DIR=.
 
@@ -56,13 +56,16 @@ R=nohup nice -n 19 R CMD BATCH --no-restore --no-save
 # TODO: support Sun Grid Engine (SGE) for grizzlybear2.
 # Or just convert to batchtools?
 
+# Location of the sbatch script for R or Rmd files.
+SBATCH_R_RMD=${SCRIPT_DIR}/sbatch-r-rmd.sh
+
 ########################################
 # Tasks that can be run.
 
 # Run an R file via "make analysis"
 analysis: somefile.R
 ifeq (${JOB_ENGINE},slurm)
-	${SBATCH} --nodes 4 --job-name=$< ${SCRIPT_DIR}/sbatch-r.sh --file=$< --dir=${OUTPUT_DIR}
+	${SBATCH} --nodes 4 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
 else
 	${R} $< ${OUTPUT_DIR}/$<.out &
 endif
@@ -70,7 +73,7 @@ endif
 # Run an Rmd file via "make h2o"
 h2o: h2o.Rmd
 ifeq (${JOB_ENGINE},slurm)
-	${SBATCH} --nodes 4 --job-name=$< ${SCRIPT_DIR}/sbatch-rmd.sh --file=$< --dir=${OUTPUT_DIR}
+	${SBATCH} --nodes 4 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
 else
 	${R} $< ${OUTPUT_DIR}/$<.out &
 endif
@@ -78,7 +81,7 @@ endif
 # Options customized based on "7. GPU job script" at:
 # http://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
 gpu-test: gpu-test.Rmd
-	sbatch -A ${ACCOUNT} -p savio2_gpu --qos savio_lowprio --nodes 1 --job-name=$< ${SCRIPT_DIR}/sbatch-rmd.sh --file=$< --dir=${OUTPUT_DIR}
+	sbatch -A ${ACCOUNT} -p savio2_gpu --qos savio_lowprio --nodes 1 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
 
 # Launch a bash session on 2 compute nodes for up to 12 hours via "make bash".
 bash:
