@@ -22,7 +22,7 @@ ifndef JOB_ENGINE
 	# TODO: check for SGE.
 endif
 
-######
+########################################
 # Savio configuration.
 
 # This allows us to use environmental variables to override this default.
@@ -34,6 +34,10 @@ endif
 # This allows us to use environmental variables to override this default.
 ifndef SBATCH_PARTITION
 	SBATCH_PARTITION=savio2
+	# Comet standard partition:
+	# SBATCH_PARTITION=compute
+	# Bridges regular node:
+	# SBATCH_PARTITION=rm
 endif
 
 # This allows us to override the default QOS by setting an environmental variable.
@@ -56,11 +60,17 @@ R=nohup nice -n 19 R CMD BATCH --no-restore --no-save
 # TODO: support Sun Grid Engine (SGE) for grizzlybear2.
 # Or just convert to batchtools?
 
+########################################
+# Misc
+
 # Location of the sbatch script for R or Rmd files.
 SBATCH_R_RMD=${SCRIPT_DIR}/sbatch-r-rmd.sh
 
 ########################################
 # Tasks that can be run.
+# Precendence: command line argument > env variable > batch script option.
+
+# Specify -t hh:mm:ss to customize the max runtime requested in sbatch.
 
 # Run an R file via "make analysis"
 analysis: somefile.R
