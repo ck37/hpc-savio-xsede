@@ -17,6 +17,9 @@
 # Output to current directory by default. Overriden by --dir option.
 dir_output=.
 
+# Don't use spark unless explicitly enabled.
+use_spark=0
+
 # Extract command line arguments
 for i in "$@"
 do
@@ -27,14 +30,17 @@ case $i in
     -d=*|--dir=*)
     dir_output="${i#*=}"
     ;;
+    --spark)
+    use_spark=1
+    ;;
 esac
 done
 
-# Load R if we are using the built-in R module:
-# Here we are using a custom compiled version of R, so we don't load the r module.
-# module load r
+# Load R if we are using the built-in R module.
+# Comment out if using a custom compiled version of R.
+module load r
 
-# Load a newer version of gcc than the default.
+# Load a newer version of gcc than the default. Needed for C++11.
 module load gcc/4.8.5
 
 # Load Java if any R packages need RJava (bartMachine, h2o, etc.)
@@ -46,6 +52,20 @@ module load lapack
 # GPU computation modules. CUDA is 7.5, cudnn is 4.0.
 module load cuda cudnn
 
+# Load spark if needed.
+if [[ $use_spark == 1 ]]; then
+  module load spark
+
+  source /global/home/groups/allhands/bin/spark_helper.sh
+
+  spark-start
+fi;
+
 # Add job id to output file in case multiple versions of script are running
 # simultaneously.
 R CMD BATCH --no-save --no-restore ${file} ${dir_output}/${file}-${SLURM_JOB_ID}.out
+
+if [[ $use_spark == 1 ]]; then
+  # Shut down spark cluster.
+  spark-stop
+fi;
