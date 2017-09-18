@@ -7,6 +7,7 @@ Notes on using UC Berkeley's Savio cluster and XSEDE for multicore and multinode
 * [sbatch-r-rmd.sh](sbatch-r-rmd.sh) - generalized slurm job script that runs any R or Rmd file
 * [Makefile](Makefile) - generalized Makefile to customize slurm parameters and submit jobs
 * [compile-R.md](compile-R.md) - compiling R on Savio
+* [batchtools.slurm.tmpl](batchtools.slurm.tmpl) - example batchtools SLURM file, esp. for usage with future.batchtools (see Makefile and future-batchtools.R)
 
 
 ## Key resources

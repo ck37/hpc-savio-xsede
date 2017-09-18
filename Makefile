@@ -80,6 +80,10 @@ else
 	${R} $< ${OUTPUT_DIR}/$<.out &
 endif
 
+# Run the example future-batchtools.r script, which uses batchtools.slurm.tmpl
+batchtools: future-batchtools.R
+	${R} $< &
+
 # Run an Rmd file via "make h2o"
 h2o: h2o.Rmd
 ifeq (${JOB_ENGINE},slurm)
