@@ -71,6 +71,20 @@ alias sq='squeue -u ${USER} -o "%.7i %.12P %.13j %.10q %.10M %.6D %R"'
 ```
 This provides longer strings for the partition and account, adds in the QOS, automatically restricts to jobs submitted by the current user, and removes some unnecessary columns.
 
+## Setup SSH keys for github
+
+* Follow [github instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key) to create a new ssh key on your personal computer.
+    * Call the new key id_rsa_savio so that it's a different file from your existing github ssh key.
+* [Add the public key](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) to your Github account.
+* Copy the private key onto Savio: `~/.ssh/id_rsa`
+    * You could copy the private key to your clipboard (as shown in github instructions) and then paste it into a new textfile on Savio using a text editor like vim or pico.
+    * Or you could use scp or ftp to copy it to Savio. E.g. `scp ~/.ssh/id_rsa_savio username@hpc.brc.berkeley.edu:.ssh/id_rsa`
+* Then edit `~/.ssh/config` to include the following lines:
+    ```bash
+    Host github.com
+      IdentityFile ~/.ssh/id_rsa
+    ```
+
 ## Tmux and long-running scripts
 
 Login nodes will kill long-running processes after a certain amount of time - something like 2-3 days. So using screen-saving program like tmux does not work on a login node directly. However, the data transfer node (dtn.brc.berkeley.edu) does not seem to restrict how long a process can run. Therefore to use tmux, ssh-agent, or related long-running processes, ssh to dtn, start up the processes, then from within dtn ssh into a login node to submit jobs. (Thanks to Aaron Culich for relaying me this tip.)
@@ -83,7 +97,7 @@ module load tmux
 tmux a
 # Load ssh-agent
 eval $(ssh-agent -s)
-# Add github key
+# Add github key. Note that a better way to do this is to edit ~/.ssh/config
 ssh-add ~/.ssh/savio_id_rsa
 # Connect to a login node to submit jobs.
 ssh ln001
@@ -104,5 +118,3 @@ Currently (Nov. 16) Homebrew does not have the latest version of Macfusion, so t
 
 You can then use MacFusion's GUI to mount your Savio directory to your mac using ssh. This makes it easy to operate on remote files as though they are on your computer, e.g. opening R scripts in RStudio to edit. Make sure to use "dtn.brc.berkeley.edu" as the host rather than "hpc.brc.berkeley.edu", as DTN is intended for remote mount operations and HPC won't allow it.
 
-## Setup SSH keys for github
-(To be added)
