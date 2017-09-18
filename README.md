@@ -79,7 +79,7 @@ This provides longer strings for the partition and account, adds in the QOS, aut
 * [Add the public key](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) to your Github account.
 * Copy the private key onto Savio: `~/.ssh/id_rsa`
     * You could copy the private key to your clipboard (as shown in github instructions) and then paste it into a new textfile on Savio using a text editor like vim or pico.
-    * Or you could use scp or ftp to copy it to Savio. E.g. `scp ~/.ssh/id_rsa_savio username@hpc.brc.berkeley.edu:.ssh/id_rsa`
+    * Or you could use scp or ftp to copy it to Savio. E.g. `scp ~/.ssh/id_rsa_savio username@dtn.brc.berkeley.edu:.ssh/id_rsa`
 * Then edit `~/.ssh/config` on Savio (using pico or vim) to include the following lines:
     ```bash
     Host github.com
