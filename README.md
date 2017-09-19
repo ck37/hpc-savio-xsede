@@ -55,12 +55,12 @@ Run (without the angle brackets):
 ```bash
 wwall -j <JOBID>
 ```
-This will show you current CPU and memory usage for a given job. The OS uses about 6 GB of RAM itself, so if you subtract that from the total memory used and then divide by the number of cores, you will have an estimate of memory usage per core. This can be helpful when understanding the performance characteristics of an analysis running sequentially or in parallel.
+This will show you current CPU and memory usage for a given job. This can be helpful when understanding the performance characteristics of an analysis running sequentially or in parallel.
 
 After a job has completed (or been terminated/cancelled), you can review the maximum memory used via the sacct command.
 
 ```bash
-sacct -j <JOBID> --format=JobID,JobName,MaxRSS,Elapsed
+sacct -j <JOBID> --format=JobID,JobName,AveRSS,MaxRSS,NNodes,NCPUS,Elapsed
 ```
 MaxRSS will show the maximum amount of memory that the job used in kilobytes, so divide by 1024^2 to get gigabytes.
 
