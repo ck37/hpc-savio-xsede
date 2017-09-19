@@ -45,7 +45,7 @@ squeue -u $USER
 ## Set R mirror
 Create ~/.Rprofile and put this in the first line:
 ```r
-options(repos=structure(c(CRAN="http://cran.cnr.berkeley.edu/")))
+options(repos=structure(c(CRAN="http://cran.rstudio.com/")))
 ```
 Then when you install packages you won't have to select a mirror every time.
 
