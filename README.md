@@ -18,7 +18,7 @@ Notes on using UC Berkeley's Savio cluster and XSEDE for multicore and multinode
 
 ## Run an interactive job
 
-Opens a bash shell with access to 1 node for 30 minutes, via the D-Lab condo:
+Opens a bash shell with access to 1 node for 30 minutes, via the biostat condo:
 ```bash
 srun -A co_biostat -p savio2 -N 1 -t 30:0 --pty bash
 ```
