@@ -85,6 +85,7 @@ This provides longer strings for the partition and account, adds in the QOS, aut
     Host github.com
       IdentityFile ~/.ssh/id_rsa
     ```
+* Make sure `.ssh/config` is only readable by you: `chmod 600 ~/.ssh/config`
 
 ## Tmux and long-running scripts
 
