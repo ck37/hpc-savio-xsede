@@ -77,10 +77,11 @@ This provides longer strings for the partition and account, adds in the QOS, aut
 * Follow [github instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key) to create a new ssh key on your personal computer.
     * Call the new key id_rsa_savio so that it's a different file from your existing github ssh key.
 * [Add the public key](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) to your Github account.
-* Copy the private key onto Savio: `~/.ssh/id_rsa`
+* Copy the private key onto Savio/XSEDE: `~/.ssh/id_rsa`
     * You could copy the private key to your clipboard (as shown in github instructions) and then paste it into a new textfile on Savio using a text editor like vim or pico.
-    * Or you could use scp or ftp to copy it to Savio. E.g. `scp ~/.ssh/id_rsa_savio username@dtn.brc.berkeley.edu:.ssh/id_rsa`
-* Then edit `~/.ssh/config` on Savio (using pico or vim) to include the following lines:
+    * Or you could use scp or ftp to copy it. E.g. `scp ~/.ssh/id_rsa_savio username@dtn.brc.berkeley.edu:.ssh/id_rsa`
+* Make sure `.ssh/id_rsa` is only readable by you: `chmod 600 ~/.ssh/id_rsa`
+* Then edit `~/.ssh/config` on Savio/XSEDE (using pico or vim) to include the following lines:
     ```bash
     Host github.com
       IdentityFile ~/.ssh/id_rsa
