@@ -2,12 +2,10 @@
 
 Compiling R from scratch takes a fair amount of work so I've put these instructions in a separate file. I followed the [writeup by Paul John](http://pj.freefaculty.org/blog/?p=315) but tweaked them to be more concise and general. These steps are specifically for Berkeley's Savio supercluster but should work in similar systems. Thank you to Chris Paciorek for help with this.
 
-I am compiling these steps after the fact so if I made any mistakes in the transcript please let me know.
-
 ## Basic setup
 
 ```bash
-# Setup modules that we need.
+# Load modules that we need.
 module load gcc/4.8.5 java mkl texlive texinfo
 
 # Make a source folder for storing packages to compile.
@@ -76,12 +74,19 @@ wget https://cran.rstudio.com/src/base/R-3/R-3.4.1.tar.gz
 tar zxvf R-*.tar.gz
 cd R-*
 
+# Setup BLAS to use Intel's math kernel library.
+MKL="-Wl,--no-as-needed -lmkl_gf_lp64 -Wl,--start-group -lmkl_gnu_thread  -lmkl_core  -Wl,--end-group -fopenmp  -ldl -lpthread -lm"
+
 # Install the built package into our lib directory, in the bin subdirectory.
-./configure --prefix=$TARGET_DIR --with-blas --with-lapack --enable-memory-profiling
+# Note: on "External Libaries:" line should see "BLAS(MKL), LAPACK(in blas)".
+./configure --prefix=$TARGET_DIR --with-blas="$MKL" --with-lapack --enable-memory-profiling
 make -j4 && make install
 
+# Triple-check that MKL was linked successfully - should see 3 MKL shared objects listed.
+ldd bin/exec/R | grep mkl
+
 # Add $TARGET_DIR/bin to your path if you haven't already.
-echo "export PATH=$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
+echo -e "# Add local bin dir for R etc. $(date +%F)\nexport PATH=$TARGET_DIR/bin:\$PATH" >> ~/.bash_profile
 
 # Reload your .bash_profile with the revised path
 source ~/.bash_profile
