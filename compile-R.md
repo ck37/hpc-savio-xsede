@@ -8,7 +8,7 @@ I am compiling these steps after the fact so if I made any mistakes in the trans
 
 ```bash
 # Setup modules that we need.
-module load gcc/4.8.5 java lapack texlive texinfo
+module load gcc/4.8.5 java mkl texlive texinfo
 
 # Make a source folder for storing packages to compile.
 mkdir -p ~/lib/src
@@ -77,7 +77,7 @@ tar zxvf R-*.tar.gz
 cd R-*
 
 # Install the built package into our lib directory, in the bin subdirectory.
-./configure --prefix=$TARGET_DIR --with-blas --with-lapack
+./configure --prefix=$TARGET_DIR --with-blas --with-lapack --enable-memory-profiling
 make -j4 && make install
 
 # Add $TARGET_DIR/bin to your path if you haven't already.
