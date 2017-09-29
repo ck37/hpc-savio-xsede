@@ -2,12 +2,12 @@
 # General setup
 
 # Directory where sbatch-r-rmd.sh, etc. can be found.
-SCRIPT_DIR=scripts
-#SCRIPT_DIR=.
+#SCRIPT_DIR=scripts
+SCRIPT_DIR=.
 
 # Directory to store command results; set to "." to be current directory.
-OUTPUT_DIR=output
-#OUTPUT_DIR=.
+#OUTPUT_DIR=output
+OUTPUT_DIR=.
 
 # How do we want to run tasks? Can be slurm or bash currently.
 # Use SLURM if possible, otherwise use bash.
@@ -85,11 +85,12 @@ batchtools: future-batchtools.R
 	${R} $< &
 
 # Run an Rmd file via "make h2o"
-h2o: h2o.Rmd
+h2o: h2o-slurm-multinode.Rmd
 ifeq (${JOB_ENGINE},slurm)
 	${SBATCH} --nodes 4 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
 else
-	${R} $< ${OUTPUT_DIR}/$<.out &
+	#${R} $< ${OUTPUT_DIR}/$<.out &
+	nohup nice -n 19 Rscript -e "rmarkdown::render('$<')" > ${OUTPUT_DIR}/$<.out 2>&1 &
 endif
 
 # Options customized based on "7. GPU job script" at:

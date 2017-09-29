@@ -1,4 +1,4 @@
-```{r}
+```{r error=T}
 
 # Check on the nodes we have access to.
 node_list = Sys.getenv("SLURM_NODELIST")
@@ -18,7 +18,10 @@ if (node_list != "") {
   # Combine into a network string for h2o.
   network = paste0(paste0(ips, "/32"), collapse=",")
   cat("Network:", network, "\n")
-}
+} else {
+  stop(paste("No slurm nodes found:", Sys.getenv("SLURM_NODELIST")))
+}  
+  
 
 # Specify how many nodes we want h2o to use.
 h2o_num_nodes = length(ips)
