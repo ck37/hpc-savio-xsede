@@ -13,7 +13,7 @@ Notes on using UC Berkeley's Savio cluster and XSEDE for multicore and multinode
 ## Key resources
 
 * Research IT's [Savio user guide](http://research-it.berkeley.edu/services/high-performance-computing/user-guide)
-* Chris Paciorek's [Savio 2016 Biostats repository](https://github.com/berkeley-scf/savio-biostat-2016)
+* Berkeley Research Computing's [Savio 2017 training repository](https://github.com/ucberkeley/savio-training-intro-2017)
 * Chris Paciorek's [parallel distributed repository](https://github.com/berkeley-scf/tutorial-parallel-distributed)
 
 ## Run an interactive job
