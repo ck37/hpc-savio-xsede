@@ -14,6 +14,8 @@
 #
 #### Done configuring sbatch.
 
+
+
 # Output to current directory by default. Overriden by --dir option.
 dir_output=.
 
@@ -53,9 +55,13 @@ done
 # Load R if we are using the built-in R module.
 # Comment out if using a custom compiled version of R.
 module load r
+# comet version (3.4.0):
+# module load R
 
 # Load a newer version of gcc than the default. Needed for C++11.
 module load gcc/4.8.5
+# comet version (4.9)
+# module load gnu
 
 # Load Java if any R packages need RJava (bartMachine, h2o, etc.)
 module load java
@@ -71,14 +77,21 @@ module load cuda cudnn
 # and http://research-it.berkeley.edu/services/high-performance-computing/frequently-asked-questions#q-how-can-i-run-spark-jobs-
 if [ $use_spark == 1 ]; then
 
-  # Only version 1.6.1 from March 2016 :/
-  module load spark
+  # NOTE: this requires the java module.
+  # NOTE: this module should have been loaded prior to calling this sbatch.
+  # I.e. run on login node, not within the SLURM call.
+  # module load spark
 
   source /global/home/groups/allhands/bin/spark_helper.sh
 
+  # This will start 1 worker per available node in $SLURM_NODELIST.
+  # Logs etc. will be in /global/scratch/$USER/spark/bash.<number>/log/
   spark-start
+
 fi;
 
+# Echo remaining commands to stdout
+set -x
 
 if [ $make_rmd == 1 ]; then
   # knitr does not support subdirectories - need to use cd.

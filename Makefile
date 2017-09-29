@@ -96,11 +96,14 @@ endif
 # Options customized based on "7. GPU job script" at:
 # http://research-it.berkeley.edu/services/high-performance-computing/running-your-jobs
 gpu-test: gpu-test.Rmd
-	sbatch -A ${ACCOUNT} -p savio2_gpu --qos savio_lowprio --nodes 1 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
+	sbatch -A ${SBATCH_ACCOUNT} -p savio2_gpu --qos savio_lowprio --nodes 1 --job-name=$< ${SBATCH_R_RMD} --file=$< --dir=${OUTPUT_DIR}
+
+spark-r-sl7: spark-r.R
+	sbatch -A ${SBATCH_ACCOUNT} -p savio2_knl --nodes 2 --job-name=$< ${SBATCH_R_RMD} --spark --file=$< --dir=${OUTPUT_DIR}
 
 # Launch a bash session on 2 compute nodes for up to 12 hours via "make bash".
 bash:
-	srun -A ${ACCOUNT} -p ${PARTITION}  -N 2 -t 12:00:00 --pty bash
+	srun -A ${SBATCH_ACCOUNT} -p ${SBATCH_PARTITION}  -N 2 -t 12:00:00 --pty bash
 
 ####
 # Add other rules here.
