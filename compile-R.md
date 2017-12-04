@@ -69,8 +69,8 @@ make -j3 && make install && cd ..
 ## Finally, we download and install R
 
 ```bash
-# Get the latest version of R, currently 3.4.1
-wget https://cran.rstudio.com/src/base/R-3/R-3.4.1.tar.gz
+# Get the latest version of R, currently 3.4.3
+wget https://cran.rstudio.com/src/base/R-3/R-3.4.3.tar.gz
 tar zxvf R-*.tar.gz
 cd R-*
 
