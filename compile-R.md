@@ -6,7 +6,7 @@ Compiling R from scratch takes a fair amount of work so I've put these instructi
 
 ```bash
 # Load modules that we need.
-module load gcc/4.8.5 java mkl texlive texinfo
+module load java mkl texlive texinfo
 
 # Make a source folder for storing packages to compile.
 mkdir -p ~/lib/src
@@ -69,8 +69,8 @@ make -j3 && make install && cd ..
 ## Finally, we download and install R
 
 ```bash
-# Get the latest version of R, currently 3.4.3
-wget https://cran.rstudio.com/src/base/R-3/R-3.4.3.tar.gz
+# Get the latest version of R, currently 3.5.3
+wget https://cran.rstudio.com/src/base/R-3/R-3.5.3.tar.gz
 tar zxvf R-*.tar.gz
 cd R-*
 
